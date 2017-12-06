@@ -17,7 +17,11 @@ public class Main {
 	
 	public static void main(String[] args) throws IOException {
 		Scanner sc = new Scanner(System.in);
-		drawText(wrapText(sc.nextLine(), LINE_LENGTH), wrapText(sc.nextLine(), LINE_LENGTH));
+		System.out.println("Enter the top line of the meme:");
+		String inTop = sc.nextLine();
+		System.out.println("Enter the bottom line of the meme:");
+		String inBottom = sc.nextLine();
+		drawText(wrapText(inTop, LINE_LENGTH), wrapText(inBottom, LINE_LENGTH));
 	}
 	
 	static String wrapText (String text, int len)
@@ -94,8 +98,9 @@ public class Main {
 			g.drawString(line, topStartX, topStartY += g.getFontMetrics().getHeight());
 		for(String line : bottom.split("\n"))
 			g.drawString(line, botStartX, botStartY += g.getFontMetrics().getHeight());
-		ImageIO.write(template,  "jpg", new File("output.jpg"));
-		System.out.println("Done.");
+		String outputName = "output" + System.currentTimeMillis() + ".jpg";
+		ImageIO.write(template,  "jpg", new File(outputName));
+		System.out.println("Saved as \"output" + System.currentTimeMillis() + ".jpg\" in the location of the main file.");
 	}
 	
 }
