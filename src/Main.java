@@ -10,9 +10,15 @@ import java.util.Vector;
 
 import javax.imageio.ImageIO;
 
+/**
+ * The main (and only) class for auto-meme, a meme generator
+ * @author Thomas Hayden
+ */
 public class Main {
 	
+	// Path to the source image
 	public final static String PATH_TO_IMAGE = "MemeTemplate.png";
+	// Maximum character per line
 	public final static int LINE_LENGTH = 18;
 	
 	public static void main(String[] args) throws IOException {
@@ -21,9 +27,16 @@ public class Main {
 		String inTop = sc.nextLine();
 		System.out.println("Enter the bottom line of the meme:");
 		String inBottom = sc.nextLine();
+		// Actually draw the text onto an image
 		drawText(wrapText(inTop, LINE_LENGTH), wrapText(inBottom, LINE_LENGTH));
 	}
 	
+	/**
+	 * Wraps a line of text to the given length
+	 * @param text the line of text to be wrapped
+	 * @param len the max length of the line
+	 * @return the wrapped text, with newlines in the correct place
+	 */
 	static String wrapText (String text, int len)
 	{
 	  // return empty array for null text
@@ -84,12 +97,18 @@ public class Main {
 	  return toReturn;
 	}
 	
+	/**
+	 * Saves a copy of the meme with the given strings
+	 * @param top the text for the top of the meme
+	 * @param bottom the text for the bottom of the meme
+	 * @throws IOException
+	 */
 	public static void drawText(String top, String bottom) throws IOException {
 		BufferedImage template = ImageIO.read(new File(PATH_TO_IMAGE));
-		int topStartX = 15;
-		int topStartY = 50;
-		int botStartX = 15;
-		int botStartY = 580;
+		int topStartX = 15; // The x of upper text
+		int topStartY = 50; // The y of upper text
+		int botStartX = 15; // The x of lower text
+		int botStartY = 580; // The y of lower text
 		
 		Graphics g = template.getGraphics();
 		g.setColor(Color.BLACK);
